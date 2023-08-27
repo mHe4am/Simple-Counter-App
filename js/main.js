@@ -131,12 +131,17 @@ resetBtn.onclick = () => {
 
 // Themes
 let colorsSpans = document.querySelectorAll(".settings .colors span");
+let themes = ["blue-theme", "violet-theme", "light-theme", "dark-theme"];
 
 colorsSpans.forEach((span) => {
   span.addEventListener("click", () => {
-    let themes = ["blue-theme", "violet-theme", "light-theme", "dark-theme"];
     document.body.classList.remove(...themes);
     document.body.classList.add(`${span.classList[0]}-theme`);
+    // **
+
+    localStorage.setItem("site_theme", `${span.classList[0]}-theme`);
+
+    // **
     // switch active class
     colorsSpans.forEach((oneSpan) => {
       oneSpan.classList.remove("active");
@@ -144,3 +149,20 @@ colorsSpans.forEach((span) => {
     span.classList.add("active");
   });
 });
+
+// Local Storage
+let themeLS = localStorage.getItem("site_theme");
+
+if (themeLS !== null) {
+  document.body.classList.remove(...themes);
+  document.body.classList.add(themeLS);
+
+  colorsSpans.forEach((oneSpan) => {
+    oneSpan.classList.remove("active");
+  });
+
+  let currThemeName = themeLS.slice(0, themeLS.length - 6);
+  document
+    .querySelector(`.settings .colors span.${currThemeName}`)
+    .classList.add("active");
+}

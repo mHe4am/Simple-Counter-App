@@ -14,4 +14,4 @@ This is a simple counter app that was created with HTML, CSS, and JavaScript. It
 -   JavaScript
 
 ### Live-Demo
-https://cu-da.github.io/Simple-Counter-App
+https://mHe4am.github.io/Simple-Counter-App

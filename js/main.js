@@ -8,7 +8,7 @@ let currentNum = 0;
 let maxLimit;
 
 window.onload = () => {
-  numEl.innerHTML = currentNum;
+  numEl.textContent = currentNum;
   checkControllers();
 };
 
@@ -22,11 +22,11 @@ function checkControllers() {
   }
   if (limitEl.classList.contains("limit-found")) {
     if (maxLimit - currentNum === 0) {
-      limitEl.innerHTML = `You reached your goal! (${currentNum})`;
+      limitEl.textContent = `You reached your goal! (${currentNum})`;
     } else if (maxLimit - currentNum > 0) {
-      limitEl.innerHTML = `${maxLimit - currentNum} out of ${maxLimit} left`;
+      limitEl.textContent = `${maxLimit - currentNum} out of ${maxLimit} left`;
     } else if (maxLimit - currentNum < 0) {
-      limitEl.innerHTML = `You are above your goal with: ${
+      limitEl.textContent = `You are above your goal with: ${
         currentNum - maxLimit
       }`;
     }
@@ -43,13 +43,13 @@ document.addEventListener("click", (e) => {
 
 increaseEl.onclick = () => {
   currentNum += 1;
-  numEl.innerHTML = currentNum;
+  numEl.textContent = currentNum;
 };
 
 decreaseEl.onclick = () => {
   if (currentNum !== 0) {
     currentNum -= 1;
-    numEl.innerHTML = currentNum;
+    numEl.textContent = currentNum;
   }
 };
 
@@ -84,7 +84,7 @@ settingsBtn.onclick = () => {
 
   startNumEl.addEventListener("input", () => {
     currentNum = Number(startNumEl.value);
-    numEl.innerHTML = currentNum;
+    numEl.textContent = currentNum;
     checkControllers();
   });
 
@@ -92,10 +92,10 @@ settingsBtn.onclick = () => {
   limitNum.addEventListener("blur", () => {
     if (limitNum.value !== "") {
       maxLimit = Number(limitNum.value);
-      limitEl.innerHTML = `${maxLimit - currentNum} out of ${maxLimit} left`;
+      limitEl.textContent = `${maxLimit - currentNum} out of ${maxLimit} left`;
       limitEl.classList.add("limit-found");
     } else {
-      limitEl.innerHTML = ``;
+      limitEl.textContent = ``;
       maxLimit = undefined;
     }
   });
@@ -115,10 +115,10 @@ resetBtn.onclick = () => {
     yesBtn.onclick = () => {
       div.classList.remove("show");
       currentNum = 0;
-      numEl.innerHTML = currentNum;
+      numEl.textContent = currentNum;
       if (maxLimit > 0) {
         maxLimit = Number(limitNum.value);
-        limitEl.innerHTML = `${maxLimit - currentNum} out of ${maxLimit} left`;
+        limitEl.textContent = `${maxLimit - currentNum} out of ${maxLimit} left`;
       }
       decreaseEl.classList.remove("show-btn");
       decreaseEl.classList.add("hide-btn");
